@@ -7,7 +7,7 @@ self.addEventListener('message', function(event) {
             'message');
             }
             clientList.forEach(function(client) {
-                if (client.id === senderId) {
+                if (client.id !== senderId) {
                     return;
                 }
 
