@@ -17,10 +17,6 @@
     <script>
         // 检查浏览器是否对 serviceWorker 有原生支持
         if ('serviceWorker' in navigator) {
-            var messageList = document.getElementById('messageList');
-            var textInput = document.getElementById('textInput');
-            var sendBtn = document.getElementById('sendBtn');
-
             // 有原生支持时，在页面加载后开启新的 Service Worker 线程，从而优化首屏加载速度
             window.addEventListener('load', function () {
                 // register 方法里第一个参数为 Service Worker 要加载的文件；第二个参数 scope 可选，用来指定 Service Worker 控制的内容的子目录
