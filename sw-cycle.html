@@ -27,20 +27,21 @@
                     // Service Worker 注册失败
                     console.log('ServiceWorker registration failed: ', err);
                 });
+
+                navigator.serviceWorker.addEventListener('message', function (event) {
+                    console.log(event.data.message);
+                    messageList.innerHTML = messageList.innerHTML + '<li>' + event.data.message + '</li>';
+                });
+
+                sendBtn.addEventListener('click', function () {
+                    console.log("click " + textInput.value);
+                    if (textInput.value) {
+                        navigator.serviceWorker.controller.postMessage(textInput.value);
+                        textInput.value = '';
+                    }
+                });
             });
             
-            navigator.serviceWorker.addEventListener('message', function (event) {
-                console.log(event.data.message);
-                messageList.innerHTML = messageList.innerHTML + '<li>' + event.data.message + '</li>';
-            });
-
-            sendBtn.addEventListener('click', function () {
-                console.log("click " + textInput.value);
-                if (textInput.value) {
-                    navigator.serviceWorker.controller.postMessage(textInput.value);
-                    textInput.value = '';
-                }
-            });
         }
     </script>
 </body>
