@@ -16,7 +16,7 @@
                     var textInput = document.getElementById('textInput');
                     var sendBtn = document.getElementById('sendBtn');
 
-	                navigator.serviceWorker.register('./service-worker.js');
+	                navigator.serviceWorker.register('./script/task.js');
 
                     navigator.serviceWorker.addEventListener('message', function (event) {
                         console.log(event.data.message);
