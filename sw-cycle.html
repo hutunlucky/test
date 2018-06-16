@@ -4,7 +4,7 @@
 <head>
     <meta http-equiv="Content-Type" content="charset=utf-8" />
     <meta name="viewport" content="width=device-width,  minimum-scale=1.0, maximum-scale=3.0"/>
-    <script src="/script/main.js"></script>
+    <script src="script/main.js"></script>
     <title>ServiceWorker Cycle</title>
 </head>
 
@@ -20,7 +20,7 @@
             // 有原生支持时，在页面加载后开启新的 Service Worker 线程，从而优化首屏加载速度
             window.addEventListener('load', function () {
                 // register 方法里第一个参数为 Service Worker 要加载的文件；第二个参数 scope 可选，用来指定 Service Worker 控制的内容的子目录
-                navigator.serviceWorker.register('/script/task.js').then(function (registration) {
+                navigator.serviceWorker.register('script/task.js').then(function (registration) {
                     // Service Worker 注册成功
                     console.log('ServiceWorker registration successful with scope: ', registration.scope);
                 }).catch(function (err) {
