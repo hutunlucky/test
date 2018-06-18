@@ -1,4 +1,4 @@
-var VERSION = 'v2';
+var VERSION = 'v3';
 
 // 缓存
 self.addEventListener('install', function (event) {
@@ -22,6 +22,7 @@ self.addEventListener('activate', function (event) {
                 cacheNames.map(function (cacheName) {
                     // 如果当前版本和缓存版本不一致
                     if (cacheName !== VERSION) {
+                        console.log("delete " + cacheName);
                         return caches.delete(cacheName);
                     }
                 })
