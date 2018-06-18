@@ -41,10 +41,14 @@ self.addEventListener('fetch', function (event) {
         console.log(event.request)
         console.log(response)
         console.log(caches)
-        caches.open(VERSION).then(function (cache) {
-            cache.put(event.request, response);
-        });
-        return response.clone();
+        
+        if (response) {
+            caches.open(VERSION).then(function (cache) {
+                cache.put(event.request, response);
+            });
+            return response.clone();
+        }
+        return fetch(event.request);
     }).catch(function () {        
         console.log("fetch event.respondWith catch")
         return caches.match('./img/mm.png');
