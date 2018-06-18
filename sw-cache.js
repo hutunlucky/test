@@ -39,6 +39,7 @@ self.addEventListener('fetch', function (event) {
     }).then(function (response) {
         console.log("fetch cache.match then")
         console.log(event.request)
+        console.log(response)
         console.log(caches)
         caches.open(VERSION).then(function (cache) {
             cache.put(event.request, response);
