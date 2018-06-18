@@ -1,9 +1,10 @@
-var VERSION = 'v1';
+var VERSION = 'v2';
 
 // 缓存
 self.addEventListener('install', function (event) {
     event.waitUntil(
         caches.open(VERSION).then(function (cache) {
+            console.log('Opened cache');
             return cache.addAll([
                 './sw-demo.html',
                 './script/jquery.min.js',
@@ -32,13 +33,19 @@ self.addEventListener('activate', function (event) {
 // 捕获请求并返回缓存数据
 self.addEventListener('fetch', function (event) {
     event.respondWith(caches.match(event.request).catch(function () {
+        console.log("fetch cache.match catch")       
+        console.log(event.request)
         return fetch(event.request);
     }).then(function (response) {
+        console.log("fetch cache.match then")
+        console.log(event.request)
+        console.log(caches)
         caches.open(VERSION).then(function (cache) {
             cache.put(event.request, response);
         });
         return response.clone();
-    }).catch(function () {
+    }).catch(function () {        
+        console.log("fetch event.respondWith catch")
         return caches.match('./img/mm.png');
     }));
 });
